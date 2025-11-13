@@ -54,8 +54,8 @@ docReady(() => {
     const isItThursdayYet = checkIfThursday();
 
     if (isItThursdayYet) {
-        setText("Yes");
         clearInterval(checkThursdayIntervalId);
+        setText("Yes");
 
         return;
     }
@@ -65,13 +65,19 @@ docReady(() => {
 
     checkIfThursdayInterval(checkInMinutes);
 
-    setInterval(() => {
+    const countDownIntervalId = setInterval(() => {
         const days = Math.floor(diffMillis / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diffMillis / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((diffMillis / (1000 * 60)) % 60);
         const seconds = Math.floor((diffMillis / 1000) % 60);
 
-        setText("There are " + days + " days, " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds " + " until Thursday");
+        if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
+            clearInterval(countDownIntervalId);
+            setText("Yes");
+        } else {
+            setText("There are " + days + " days, " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds " + " until Thursday");
+        }
+
 
         diffMillis = diffMillis - 1000;
     }, 1000);
