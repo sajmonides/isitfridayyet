@@ -2,7 +2,7 @@ let checkThursdayIntervalId;
 let answerElement;
 let diffMillis;
 const today = new Date();
-const thursdayNumber = 4;
+const thursdayNumber = 5;
 
 function docReady(fn) {
     // see if DOM is already available
@@ -75,7 +75,7 @@ docReady(() => {
             clearInterval(countDownIntervalId);
             setText("Yes");
         } else {
-            setText("There are " + days + " days, " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds " + " until Thursday");
+            setText("There are " + days + " days, " + hours + " hours, " + minutes + " minutes, and " + seconds + " seconds " + " until Friday");
         }
 
         diffMillis = diffMillis - 1000;
